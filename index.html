@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformativní přístup ke konfliktům - RAG Aplikace</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-handshake"></i> Transformativní přístup ke konfliktům</h1>
+                <p class="subtitle">Inteligentní vyhledávání v dokumentech o transformativní mediace</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Search Section -->
+            <section class="search-section">
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" id="queryInput" placeholder="Zadejte svůj dotaz o transformativním přístupu ke konfliktům..." 
+                               autocomplete="off" spellcheck="true">
+                        <button id="searchBtn" class="search-btn">
+                            <i class="fas fa-search"></i>
+                            <span>Hledat</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Example queries -->
+                    <div class="example-queries">
+                        <p class="examples-label">Příklady dotazů:</p>
+                        <div class="example-buttons">
+                            <button class="example-btn" data-query="Co je transformativní mediace?">Co je transformativní mediace?</button>
+                            <button class="example-btn" data-query="Jaké jsou principy empowerment a recognition?">Principy empowerment a recognition</button>
+                            <button class="example-btn" data-query="Jak funguje transformativní přístup v praxi?">Praktické využití</button>
+                            <button class="example-btn" data-query="Jaké jsou rozdíly mezi transformativní a facilitativní mediace?">Rozdíly v přístupech</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading Indicator -->
+            <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+                <div class="spinner"></div>
+                <p>Vyhledávám v dokumentech...</p>
+            </div>
+
+            <!-- Results Section -->
+            <section id="resultsSection" class="results-section" style="display: none;">
+                <div class="results-container">
+                    <div class="results-header">
+                        <h2><i class="fas fa-lightbulb"></i> Odpověď</h2>
+                        <div class="results-meta">
+                            <span id="sourcesCount" class="sources-count"></span>
+                            <button id="newQueryBtn" class="new-query-btn">
+                                <i class="fas fa-plus"></i>
+                                Nový dotaz
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="responseContent" class="response-content">
+                        <!-- Response will be inserted here -->
+                    </div>
+                    
+                    <div id="citationsContent" class="citations-content">
+                        <!-- Citations will be inserted here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Error Section -->
+            <div id="errorSection" class="error-section" style="display: none;">
+                <div class="error-container">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Chyba</h3>
+                    <p id="errorMessage"></p>
+                    <button id="retryBtn" class="retry-btn">
+                        <i class="fas fa-redo"></i>
+                        Zkusit znovu
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <!-- Database Stats -->
+                <div class="stats-card">
+                    <h3><i class="fas fa-database"></i> Databáze</h3>
+                    <div id="databaseStats" class="stats-content">
+                        <div class="stat-item">
+                            <span class="stat-label">Dokumenty:</span>
+                            <span id="documentCount" class="stat-value">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Status:</span>
+                            <span id="databaseStatus" class="stat-value">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Available Documents -->
+                <div class="documents-card">
+                    <h3><i class="fas fa-file-pdf"></i> Dostupné dokumenty</h3>
+                    <div id="documentsList" class="documents-content">
+                        <p class="loading-text">Načítám dokumenty...</p>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="actions-card">
+                    <h3><i class="fas fa-cogs"></i> Akce</h3>
+                    <div class="actions-content">
+                        <button id="refreshStatsBtn" class="action-btn">
+                            <i class="fas fa-sync"></i>
+                            Obnovit statistiky
+                        </button>
+                        <button id="reindexBtn" class="action-btn warning">
+                            <i class="fas fa-database"></i>
+                            Reindexovat databázi
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Transformativní přístup ke konfliktům - RAG Aplikace</p>
+            <p>Powered by OpenAI GPT-4 & ChromaDB</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
